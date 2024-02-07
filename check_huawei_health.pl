@@ -1,8 +1,8 @@
 #!/usr/bin/perl -w
 #
 # ============================== INFO ========================================
-# Version	: 0.1
-# Date		: February 05 2024
+# Version	: 0.1a
+# Date		: February 07 2024
 # Author	: Christos Ntokos (University of Ioannina)
 # Based on	: "check_snmp_environment" plugin (version 0.7cra) from 
 #		  Charles R. Anderson
@@ -19,7 +19,10 @@
 # This scrip supports IPv6. You can use the "-6" switch for this.
 #
 # ============================== VERSIONS ====================================
-# v0.1 : Initial version
+# v0.1 : Feb 05 2024
+#	 - Initial version 
+# v0.1a: Feb 07 2024
+#	- Improve regex matching power-supply string in ENTITY-MIB
 #
 # ============================== LICENCE =====================================
 # This program is free software: you can redistribute it and/or modify
@@ -467,7 +470,7 @@ if (($o_check_mode eq "power") || ($o_check_mode eq "env") || ($o_check_mode eq 
 			# find power supply indexes based on component description
 			$slot_name = $$resultat_sn{$key};
 
-			if (($slot_name =~ /power [0-9]/i) || ($slot_name =~ /power card [0-9]/i)) {
+			if ($slot_name =~ /(power|pwr)( card|) [0-9]/i) {
 				$num_ps++;
 
 				$key =~ s/$huawei_slot_name//;

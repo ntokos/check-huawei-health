@@ -1,4 +1,7 @@
 Change Log for the check-huawei-health plugin:
 
-0.1     (06 Feb 2024)
-        Initial plugin release
+0.1	 (06 Feb 2024)
+	- Initial plugin release
+
+0.1a (07 Feb 2024)
+	- Improve regex matching power-supply string in ENTITY-MIB
