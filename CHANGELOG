@@ -5,3 +5,6 @@ Change Log for the check-huawei-health plugin:
 
 0.1a (07 Feb 2024)
 	- Improve regex matching power-supply string in ENTITY-MIB
+
+0.1b (Oct 07 2024)
+	- Ignore slots/modules with erroneously high temperature numbers

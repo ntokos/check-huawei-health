@@ -1,8 +1,8 @@
 #!/usr/bin/perl -w
 #
 # ============================== INFO ========================================
-# Version	: 0.1a
-# Date		: February 07 2024
+# Version	: 0.1b
+# Date		: Oct 07 2024
 # Author	: Christos Ntokos (University of Ioannina)
 # Based on	: "check_snmp_environment" plugin (version 0.7cra) from 
 #		  Charles R. Anderson
@@ -23,6 +23,8 @@
 #	 - Initial version 
 # v0.1a: Feb 07 2024
 #	- Improve regex matching power-supply string in ENTITY-MIB
+# v0.1b: Oct 07 2024
+#	- Ignore slots/modules with erroneously high temperature numbers
 #
 # ============================== LICENCE =====================================
 # This program is free software: you can redistribute it and/or modify
@@ -574,7 +576,8 @@ if (($o_check_mode eq "temperature") || ($o_check_mode eq "env") || ($o_check_mo
 	
 	foreach my $key ( sort keys %$resultat_tc) {
 		if ($key =~ /$huawei_temperature_current/) {
-			next if ($$resultat_tc{$key} == 0);   # skip zero temperature entries
+			# skip zero or very high temperature entries
+			next if (($$resultat_tc{$key} == 0) || ($$resultat_tc{$key} > 1024));
 				
 			$key =~ s/$huawei_temperature_current//;
 			$num_temper++;

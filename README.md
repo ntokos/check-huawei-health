@@ -5,7 +5,10 @@ This plugin is based on the "check_snmp_environment" plugin (version 0.7cra) fro
 
 ## Compatibility
 - The plugin was written and tested for Icinga2 v.2.8 to 2.11. It probably works on Nagios/Icinga1 too.
-- It has been tested in Icinga 2 for monitoring Huawei CloudEngine S5731 and S6730 series switches as well as NE-40E series routers.
+- It has been tested in Icinga 2 for monitoring the following Huawei models:
+	- CloudEngine S5731 and S6730 series switches
+	- NE40E-M series routers
+	- AirEngine 9700 Wireless Controllers
 
 ## How to use
 You can always run it (via command line) with the `-h` or `--help` option to see the help text.
